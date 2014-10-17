@@ -1,0 +1,38 @@
+digraph g { 
+
+graph [size = "5, 5"]
+//label="Atlas Flavor Tagging Framework"
+jet  [label="Jet", fontcolor=white, style=filled, fillcolor=black]; 
+
+subgraph cluster_0{ 
+rank=same
+label="Base Taggers"
+color=gray
+iptag      [label="IPTag"     , style=filled, fillcolor=red]
+svtag      [label="SV1"       , style=filled, fillcolor=red]
+sv0tag      [label="SV0"       , style=filled, fillcolor=red]
+jetfitter  [label="JetFitter" , style=filled, fillcolor=red]
+jfc        [label="JetFitterCharm" , style=filled, fillcolor=red]
+}			
+jet -> iptag
+jet -> svtag
+jet -> jetfitter
+jet -> jfc
+jet -> sv0tag
+
+//subgraph {rank=same
+ip3d    [ label="IP3D"   , style=filled, fillcolor = cyan]
+sv1     [ label="SV1"    , style=filled, fillcolor = cyan]
+//sv0     [ label="SV0"    , style=filled, fillcolor = cyan]
+sometag [ label="GAIA"   , style=filled, fillcolor = green]
+iptag -> ip3d
+ip3d -> sometag
+svtag -> sometag
+svtag -> sv1
+//sv0tag -> sv0
+sv1 -> sometag
+sv0tag -> sometag
+jetfitter -> sometag
+jfc -> sometag
+
+}
