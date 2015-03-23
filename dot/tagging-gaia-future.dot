@@ -18,7 +18,7 @@ jet -> jetfitter
 
 //subgraph {rank=same
 ip3d    [ label="IP3D"   , style=filled, fillcolor = cyan]
-sometag [ label="GAIA 2.0"   , style=filled, fillcolor = green]
+sometag [ label="Deep NN"   , style=filled, fillcolor = green]
 iptag -> ip3d
 ip3d -> sometag
 svtag -> sometag
