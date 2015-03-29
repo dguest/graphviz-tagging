@@ -8,7 +8,7 @@ subgraph cluster_0{
 rank=same
 label="Base Taggers"
 color=gray
-iptag      [label="IPTag"     , style=filled, fillcolor=red]
+iptag      [label="IPxD"     , style=filled, fillcolor=red]
 svtag      [label="SV1"       , style=filled, fillcolor=red]
 jetfitter  [label="JetFitter" , style=filled, fillcolor=red]
 }			

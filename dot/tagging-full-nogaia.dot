@@ -1,16 +1,16 @@
-digraph g { 
+digraph g {
 
 graph [size = "6, 6"]
-jet  [label="Jet", fontcolor=white, style=filled, fillcolor=black]; 
+jet  [label="Jet", fontcolor=white, style=filled, fillcolor=black];
 
-subgraph cluster_0{ 
+subgraph cluster_0{
 rank=same
 label="Base Taggers"
 color=gray
-iptag      [label="IPTag"     , style=filled, fillcolor=red]
-svtag      [label="SVTag"       , style=filled, fillcolor=red]
+iptag      [label="IPxD"     , style=filled, fillcolor=red]
+svtag      [label="SV1"       , style=filled, fillcolor=red]
 jetfitter  [label="JetFitter" , style=filled, fillcolor=red]
-}			
+}
 jet -> iptag
 jet -> svtag
 jet -> jetfitter
@@ -25,9 +25,9 @@ svtag -> sv1	     [weight=1]
 jetfitter -> combnn  [weight=1]
 ip3d -> combnn       [weight=1]
 
-mv1     [ label="MV1" , style=filled, fillcolor=green   ] 
+mv1     [ label="MV1" , style=filled, fillcolor=green   ]
 
-subgraph cluster_1 { 
+subgraph cluster_1 {
 label="old b-taggers"
 color=gray
 ip3d -> mv1
@@ -35,7 +35,7 @@ sv1 -> mv1
 combnn -> mv1
 
 // ----- mv1c
-mv1c  [ label="MV1c" , style=filled, fillcolor=green   ] 
+mv1c  [ label="MV1c" , style=filled, fillcolor=green   ]
 ip3d -> mv1c
 sv1 -> mv1c
 combnn -> mv1c
@@ -43,7 +43,7 @@ combnn -> mv1c
 
 // ------- jet fitter charm -------
 
-subgraph cluster_2 { 
+subgraph cluster_2 {
 label="c-taggers"
 color=gray
 jfc [ label="JetFitterCharm" , style=filled, fillcolor=red   ]
@@ -64,7 +64,7 @@ jfcnn -> combnn  [weight = 0, style=dotted, arrowhead=none, color=red]
 
 // ------- MV3 -----------
 
-mv3     [ label="MV2" , style=filled, fillcolor=purple   ]
+mv3     [ label="Large BDT\n(never finalized)" , style=filled, fillcolor=purple   ]
 
 ip2d    [ label="IP2D"   , style=filled, fillcolor = cyan]
 iptag -> ip2d	     [weight=1]
