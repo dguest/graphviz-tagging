@@ -24,4 +24,13 @@ ip3d -> sometag
 svtag -> sometag
 jetfitter -> sometag
 
+pb [label="Pb", style=filled, fillcolor=orange]
+pc [label="Pc", style=filled, fillcolor=orange]
+pu [label="Pu", style=filled, fillcolor=orange]
+
+sometag -> pb
+sometag -> pc
+sometag -> pu
+
+
 }
