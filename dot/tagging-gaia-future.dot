@@ -1,17 +1,17 @@
-digraph g { 
+digraph g {
 
 graph [size = "3, 3"]
 //label="Atlas Flavor Tagging Framework"
-jet  [label="Jet", fontcolor=white, style=filled, fillcolor=black]; 
+jet  [label="Jet", fontcolor=white, style=filled, fillcolor=black];
 
-subgraph cluster_0{ 
+subgraph cluster_0{
 rank=same
 label="Base Taggers"
 color=gray
 iptag      [label="IPxD"     , style=filled, fillcolor=red]
 svtag      [label="SV1"       , style=filled, fillcolor=red]
 jetfitter  [label="JetFitter" , style=filled, fillcolor=red]
-}			
+}
 jet -> iptag
 jet -> svtag
 jet -> jetfitter
