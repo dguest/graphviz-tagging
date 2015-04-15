@@ -46,7 +46,7 @@ combnn -> mv1c
 subgraph cluster_2 {
 label="c-taggers"
 color=gray
-jfc [ label="JetFitterCharm" , style=filled, fillcolor=red   ]
+jfc [ label="JetFitter\n(charm tuned)" , style=filled, fillcolor=red   ]
 jfcnn [ label="JetFitterCharm" , style=filled, fillcolor=green   ]
 
 }

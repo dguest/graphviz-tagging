@@ -1,0 +1,26 @@
+
+// ---- legend ----
+digraph x { 
+
+graph [size = "6, 6"]
+subgraph cluster_8 { 
+ranksep=0.25
+nodesep=0.25
+label="Legend"
+basic      [label="Tracking /\nVertexing", style=filled, fillcolor=red]
+likelihood [label="Likelihood"  , style=filled, fillcolor=cyan]
+nn         [label="Neural Net"  , style=filled, fillcolor=green]
+//bdt        [label="BDT"         , style=filled, fillcolor=purple]
+
+subgraph cluster_9{ 
+style=invis
+label=""
+X -> Y -> Z [style=dotted, color=red, constraint=false, arrowhead=none]
+X [label="",shape=none, width=0, height=0]
+Y [shape=none, width=0, height=0, label="similar\nalgorithm", fixedsize=false]
+Z [label="",shape=none, width=0, height=0]
+}
+}
+
+basic -> likelihood -> nn -> Y  [style=invis]
+}
