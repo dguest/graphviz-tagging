@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import sys
+
 def run(struct):
     outlines = ['digraph g {']
     outlines += get_layer_nodes(1, struct[0], 'input')
@@ -35,4 +37,7 @@ def get_connections(layer_n, n_nodes, nodes_next):
     return out_list
 
 if __name__ == '__main__':
-    run([5,5,4,3])
+    if len(sys.argv) == 0:
+        sys.exit('usage: {} <nodes>...'.format(sys.argv[0]))
+    struct = [int(x) for x in sys.argv[1:]]
+    run(struct)
