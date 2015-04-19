@@ -17,7 +17,10 @@ def _z(num):
 
 def run(args):
     struct = args.nodes
-    outlines = ['digraph g {', 'splines=false']
+    outlines = [
+        'digraph g {',
+        # 'splines=false'
+    ]
     outlines += get_layer_nodes(1, struct[0], ['input'])
     layers = len(struct)
     out_layer = [_z(layers)] if args.autoencoder else args.out_layer
