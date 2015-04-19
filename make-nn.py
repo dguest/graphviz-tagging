@@ -21,7 +21,8 @@ def run(args):
         'digraph g {',
         # 'splines=false'
     ]
-    outlines += get_layer_nodes(1, struct[0], ['input'], color='green')
+    outlines += get_layer_nodes(
+        1, struct[0], ['input'], color='green')#, boxframe='white', box='white')
     layers = len(struct)
 
     for layer_n, nodes_next in enumerate(struct[1:],2):
@@ -34,7 +35,7 @@ def run(args):
 
     if args.autoencoder:
         lab = [_z(layers - 1)]
-        outlines += get_layer_nodes(layers + 1, struct[-2], lab, box='gray')
+        outlines += get_layer_nodes(layers + 1, struct[-2], lab, color='gray')
 
     n_nodes = struct[0]
     for layer_n, nodes_next in enumerate(struct[1:],1):
@@ -54,13 +55,15 @@ def run(args):
 def _opts(opts):
     return ', '.join(['{} = {}'.format(k,v) for k,v in opts.items()])
 
-def get_layer_nodes(layer_n, n_nodes, labels=[''], box=None, color='white'):
+def get_layer_nodes(layer_n, n_nodes, labels=[''], box=None, color='white',
+                    boxframe='black'):
     out_list = []
     if box:
         out_list += [
             'subgraph cluster{} {{'.format(layer_n),
             'style=filled',
             'fillcolor={}'.format(box),
+            'color={}'.format(boxframe),
         ]
     for noden, label in zip(range(n_nodes), itertools.cycle(labels)):
         out_list.append(
