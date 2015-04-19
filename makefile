@@ -18,8 +18,8 @@ OUT_PATHS  := $(addprefix $(FIG_DIR)/, $(PDF_FILES) $(EPS_FILES) $(PNG_FILES))
 
 all: $(OUT_PATHS)
 
-$(DOT_DIR)/%_gen.dot: $(STRUCT_DIR)/%.txt
-	@./make-nn.py $(shell cat $^) > $@
+$(DOT_DIR)/%_gen.dot: $(STRUCT_DIR)/%.txt make-nn.py
+	@./make-nn.py $(shell cat $<) > $@
 
 $(FIG_DIR)/%.pdf: $(DOT_DIR)/%.dot
 	@mkdir -p $(FIG_DIR)
