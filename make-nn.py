@@ -21,16 +21,16 @@ def run(args):
         'digraph g {',
         # 'splines=false'
     ]
-    outlines += get_layer_nodes(1, struct[0], ['input'])
+    outlines += get_layer_nodes(1, struct[0], ['input'], color='green')
     layers = len(struct)
-    out_layer = [_z(layers)] if args.autoencoder else args.out_layer
 
     for layer_n, nodes_next in enumerate(struct[1:],2):
         lab = [_z(layer_n)]
-        if layer_n == layers:
-            lab = out_layer
-        # box = 'red' if args.autoencoder and layer_n == layers - 1 else None
-        outlines += get_layer_nodes(layer_n, nodes_next, lab)#, box=box)
+        color = 'white'
+        if layer_n == layers and not args.autoencoder:
+            lab = args.out_layer
+            color = 'orange'
+        outlines += get_layer_nodes(layer_n, nodes_next, lab, color=color)
 
     if args.autoencoder:
         lab = [_z(layers - 1)]
@@ -54,7 +54,7 @@ def run(args):
 def _opts(opts):
     return ', '.join(['{} = {}'.format(k,v) for k,v in opts.items()])
 
-def get_layer_nodes(layer_n, n_nodes, labels=[''], box=None):
+def get_layer_nodes(layer_n, n_nodes, labels=[''], box=None, color='white'):
     out_list = []
     if box:
         out_list += [
@@ -64,8 +64,8 @@ def get_layer_nodes(layer_n, n_nodes, labels=[''], box=None):
         ]
     for noden, label in zip(range(n_nodes), itertools.cycle(labels)):
         out_list.append(
-            r'{x}{y} [label={l}, style=filled, fillcolor=white]'.format(
-                x=noden, y=layer_n, l=label))
+            r'{x}{y} [label={l}, style=filled, fillcolor={c}]'.format(
+                x=noden, y=layer_n, l=label, c=color))
     if box:
         out_list.append('}')
     return out_list
