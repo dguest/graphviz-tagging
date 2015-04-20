@@ -11,6 +11,8 @@ _autoencoder_start = [
     'color=red',
     'penwidth=4']
 
+_output_color = 'orange'
+
 def _z(num):
     return '" "'
     # return '<Z<SUB>{}</SUB>>'.format(num)
@@ -30,12 +32,13 @@ def run(args):
         color = 'white'
         if layer_n == layers and not args.autoencoder:
             lab = args.out_layer
-            color = 'orange'
+            color = _output_color
         outlines += get_layer_nodes(layer_n, nodes_next, lab, color=color)
 
     if args.autoencoder:
         lab = [_z(layers - 1)]
-        outlines += get_layer_nodes(layers + 1, struct[-2], lab, color='gray')
+        outlines += get_layer_nodes(
+            layers + 1, struct[-2], lab, color=_output_color)
 
     n_nodes = struct[0]
     for layer_n, nodes_next in enumerate(struct[1:],1):

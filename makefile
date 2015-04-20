@@ -10,11 +10,16 @@ GEN_FILES  := $(STRUCT_FILES:.txt=_gen.dot)
 DOT_PATHS  += $(GEN_FILES)
 
 BASE_FILES := $(notdir $(DOT_PATHS))
-PDF_FILES  := $(BASE_FILES:%.dot=%.pdf)
-EPS_FILES  := $(BASE_FILES:%.dot=%.eps)
-PNG_FILES  := $(BASE_FILES:%.dot=%.png)
-OUT_PATHS  := $(addprefix $(FIG_DIR)/, $(PDF_FILES) $(EPS_FILES) $(PNG_FILES))
+PDF_FILES  := $(addprefix $(FIG_DIR)/, $(BASE_FILES:%.dot=%.pdf))
+EPS_FILES  := $(addprefix $(FIG_DIR)/, $(BASE_FILES:%.dot=%.eps))
+PNG_FILES  := $(addprefix $(FIG_DIR)/, $(BASE_FILES:%.dot=%.png))
+OUT_PATHS  := $(PDF_FILES) $(EPS_FILES) $(PNG_FILES)
 
+.PHONEY: pdf png eps all
+
+pdf: $(PDF_FILES)
+png: $(PNG_FILES)
+eps: $(EPS_FILES)
 
 all: $(OUT_PATHS)
 
