@@ -26,11 +26,12 @@ def run(args):
     outlines += get_layer_nodes(
         1, struct[0], ['input'], color='green')#, boxframe='white', box='white')
     layers = len(struct)
+    show_output = not (args.autoencoder or args.crop)
 
     for layer_n, nodes_next in enumerate(struct[1:],2):
         lab = [_z(layer_n)]
         color = 'white'
-        if layer_n == layers and not args.autoencoder:
+        if layer_n == layers and show_output:
             lab = args.out_layer
             color = _output_color
         outlines += get_layer_nodes(layer_n, nodes_next, lab, color=color)
@@ -101,8 +102,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('nodes', nargs='+', type=int)
     parser.add_argument('--out-layer', nargs='+', default=['output'])
-    parser.add_argument('-b','--backprop', action='store_true')
-    parser.add_argument('-a','--autoencoder', action='store_true')
-    parser.add_argument('-t','--train', action='store_true')
+    method = parser.add_mutually_exclusive_group()
+    method.add_argument('-b','--backprop', action='store_true')
+    method.add_argument('-a','--autoencoder', action='store_true')
+    method.add_argument('-t','--train', action='store_true')
+    method.add_argument('--crop', action='store_true')
     args = parser.parse_args()
     run(args)
